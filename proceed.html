@@ -4,7 +4,7 @@
 <html>
     
 <head>
-    <script src="../code.jquery.com/jquery-latest.min.js"></script>
+   <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>
 
@@ -545,6 +545,24 @@ button:hover {
         });
     </script>
 
+<script>
+$(document).ready(function() {
+    $("#go").click(function() {
+        $("#intro").fadeOut(0);
+        $("#loader").fadeIn(1000);
+        var i = 0;
+        var interval = setInterval(function() {
+            $("#num").text(i + "%");
+            i += 1;
+            if (i >= 100) {
+                clearInterval(interval);
+                $("#loader").fadeOut(0);
+                $("#info").fadeIn(1000);
+            }
+        }, 50);
+    });
+});
+</script>
 
 
 

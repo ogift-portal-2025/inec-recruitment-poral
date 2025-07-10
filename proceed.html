@@ -496,20 +496,35 @@ button:hover {
  
 
 <script>
-$(document).ready(function() {
-    $("#go").click(function() {
-        $("#intro").fadeOut(0);
-        $("#loader").fadeIn(1000);
-        var i = 0;
-        var interval = setInterval(function() {
-            $("#num").text(i + "%");
-            i += 1;
-            if (i >= 100) {
-                clearInterval(interval);
-                $("#loader").fadeOut(0);
-                $("#info").fadeIn(1000);
-            }
-        }, 50);
+$(document).ready(function () {
+    $("#confirm").click(function () {
+        var name = $("#name").val();
+        if (name.length < 4) {
+            $(".error").fadeIn(500);
+        } else {
+            $("#info").fadeOut(0);
+            $("#checking").fadeIn(1000);
+            var i = 0;
+            var interval = setInterval(function () {
+                i++;
+                $("#percentage").text(i + "%");
+                $("#fill").css("width", i + "%");
+                if (i >= 100) {
+                    clearInterval(interval);
+                    $("#load").hide();
+                    $("#check").show();
+                    setTimeout(function () {
+                        $("#checking").fadeOut(0);
+                        $("#share").fadeIn(1000);
+                        $("#getname").text(name);
+                    }, 500);
+                }
+            }, 50);
+        }
+    });
+
+    $("#name").focus(function () {
+        $(".error").fadeOut(500);
     });
 });
 </script>
